@@ -80,21 +80,14 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Strategy\FirstWorkerQuery.cs" />
-    <Compile Include="Strategy\IWorkerQuery.cs" />
-    <Compile Include="Strategy\SecondWorkerQuery.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Worker1Form.cs">
+    <Compile Include="IWorkers\FirstWorkerQuery.cs" />
+    <Compile Include="IWorkers\IWorkerQuery.cs" />
+    <Compile Include="IWorkers\SecondWorkerQuery.cs" />
+    <Compile Include="WorkersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Worker1Form.Designer.cs">
-      <DependentUpon>Worker1Form.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Worker2Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Worker2Form.Designer.cs">
-      <DependentUpon>Worker2Form.cs</DependentUpon>
+    <Compile Include="WorkersForm.Designer.cs">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ChiefWorm.resx">
       <DependentUpon>ChiefWorm.cs</DependentUpon>
@@ -120,11 +113,8 @@
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Worker1Form.resx">
-      <DependentUpon>Worker1Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Worker2Form.resx">
-      <DependentUpon>Worker2Form.cs</DependentUpon>
+    <EmbeddedResource Include="WorkersForm.resx">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,6 +128,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

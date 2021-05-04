@@ -14,6 +14,7 @@ namespace Diploma
         List<string> _profilesString;
         Dictionary<string, int> _addTask;
         int _userID;
+        bool status;
 
         public ChiefWorm(int userID)
         {
@@ -21,6 +22,7 @@ namespace Diploma
             _profilesString = new List<string>();
             _addTask = new Dictionary<string, int>();
             _userID = userID;
+            status = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,8 +54,7 @@ namespace Diploma
                     }
                 }
             }
-        }       
-                 
+        }
 
         private void btn_create_Click(object sender, EventArgs e)
         {
@@ -62,8 +63,12 @@ namespace Diploma
                 if (dgv_prifiles[0, i].Value == null)
                 {
                     CreateApplication(_addTask);
-                    _addTask.Clear(); ////!!!
+                    _addTask.Clear();
                     MessageBox.Show("Заявка создана!", "Зявка создана");
+                    ChiefWorm chiefworm = new ChiefWorm(_userID);
+                    chiefworm.Show();
+                    status = false;
+                    this.Close();
                     return;
                 }
 
@@ -74,7 +79,7 @@ namespace Diploma
                     continue;
                 }
 
-                _addTask.Add(dgv_prifiles[0,i].Value.ToString(), Convert.ToInt32(dgv_prifiles[1,i].Value));
+                _addTask.Add(dgv_prifiles[0, i].Value.ToString(), Convert.ToInt32(dgv_prifiles[1, i].Value));
             }
         }
 
@@ -95,7 +100,7 @@ namespace Diploma
                 {
                     dcombo.Items.Add(_profilesString[i]);
                 }
-                
+
                 dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[0] = dcombo;
                 dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[1].Value = "0";
             }
@@ -121,8 +126,8 @@ namespace Diploma
                 return;
             }
 
-            if (string.CompareOrdinal(e.FormattedValue.ToString(), newText) !=0 )
-            { 
+            if (string.CompareOrdinal(e.FormattedValue.ToString(), newText) != 0)
+            {
                 return;
             }
 
@@ -164,15 +169,8 @@ namespace Diploma
 
                     commandProcess.ExecuteNonQuery();
                 }
-
-                SqlCommand command = new SqlCommand("SELECT Count(Task_id) FROM Tasks", connection);
-                int count = Convert.ToInt32(command.ExecuteScalar());
-
-                lb_task.Text = $"Заявка №{count + 1}";
-
             }
         }
-
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -186,7 +184,10 @@ namespace Diploma
 
         private void ChiefWorm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (status)
+            {
+                Application.Exit();
+            }
         }
     }
 }

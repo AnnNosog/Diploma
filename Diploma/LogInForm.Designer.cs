@@ -95,7 +95,7 @@ namespace Diploma
             this.Controls.Add(this.tb_userLogin);
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LogInForm";
+            this.Text = "Вход";
             this.UseWaitCursor = true;
             this.ResumeLayout(false);
             this.PerformLayout();

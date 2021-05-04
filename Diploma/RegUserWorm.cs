@@ -38,15 +38,15 @@ namespace Diploma
 
         private void btn_reg_Click(object sender, EventArgs e)
         {
-            if (Authentications.CheckPasswordRegex(tb_passwordReg.Text)== false)
+            if (Authentications.CheckPasswordRegex(tb_passwordReg.Text) == false)
             {
                 MessageBox.Show("Пароль должен состоять от 6 символов с использованием цифр, спец. символов (!@#$%^&*), латиницы, наличием строчных и прописных символов.", "Ошибка");
             }
-            else if (Authentications.CheckUserRegex(tb_userNameReg.Text) == false)
+            else if (Authentications.CheckUserRegex(tb_userNameReg.Text) == false || Authentications.CheckUserRegex(tb_loginReg.Text) == false)
             {
                 MessageBox.Show("Имя должно быть на латинице.", "Ошибка");
             }
-            else if(Authentications.CheckPasswordRegex(tb_passwordReg.Text) && Authentications.CheckUserRegex(tb_userNameReg.Text))
+            else if (Authentications.CheckPasswordRegex(tb_passwordReg.Text) && Authentications.CheckUserRegex(tb_userNameReg.Text))
             {
                 if (!Authentications.AuthCheckUser(tb_userNameReg.Text))
                 {
@@ -56,11 +56,13 @@ namespace Diploma
                     {
                         connection.Open();
 
-                        SqlCommand commandRole= new SqlCommand($"Select Role_id From Roles Where Roles.Name = '{cmb_role.SelectedItem}'", connection);
+                        SqlCommand commandRole = new SqlCommand($"Select Role_id From Roles Where Roles.Name = '{cmb_role.SelectedItem}'", connection);
                         int role = Convert.ToInt32(commandRole.ExecuteScalar());
 
-                        SqlCommand commandTasks = new SqlCommand("INSERT INTO Users (Login, Password, Role_id) VALUES (@login, @pass, @role_id)", connection);
-                        commandTasks.Parameters.Add(new SqlParameter("@login", tb_userNameReg.Text));
+                        SqlCommand commandTasks = new SqlCommand("INSERT INTO Users (Name, Login, Password, Role_id) VALUES (@name, @login, @pass, @role_id)", connection);
+
+                        commandTasks.Parameters.Add(new SqlParameter("@name", tb_userNameReg.Text));
+                        commandTasks.Parameters.Add(new SqlParameter("@login", tb_loginReg.Text));
                         commandTasks.Parameters.Add(new SqlParameter("@pass", tb_passwordReg.Text));
                         commandTasks.Parameters.Add(new SqlParameter("@role_id", role));
 
@@ -74,7 +76,7 @@ namespace Diploma
                 {
                     MessageBox.Show("Такой пользователь уже есть.");
                 }
-            }           
+            }
         }
     }
 }

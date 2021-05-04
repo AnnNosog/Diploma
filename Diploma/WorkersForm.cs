@@ -9,20 +9,18 @@ using System.Windows.Forms;
 
 namespace Diploma
 {
-    public partial class Worker1Form : Form
+    public partial class WorkersForm : Form
     {
         Dictionary<int, int> _addTask;
         int _userID;
-        int _userRole;
         bool status;
         IWorkerQuery _workerQuery;
 
-        public Worker1Form(int userID, int userRole, IWorkerQuery workerQuery)
+        public WorkersForm(int userID, IWorkerQuery workerQuery)
         {
             InitializeComponent();
             _addTask = new Dictionary<int, int>();
             _userID = userID;
-            _userRole = userRole;
             _workerQuery = workerQuery;
             var a = _workerQuery.LoadQuery;
         }
@@ -69,7 +67,6 @@ namespace Diploma
 
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -85,29 +82,21 @@ namespace Diploma
                     foreach (DataRow row in dt.Rows)
                     {
                         int quantity = 0;
+                        _addTask[Convert.ToInt32(row[3].ToString())] = 0;
+                        SqlCommand commandQuantity = new SqlCommand(_workerQuery.GetQuatityQuery(Convert.ToInt32(row[2])), connection);
 
-                        if (_userRole == 2)
+                        using (SqlDataReader rdrQuantity = commandQuantity.ExecuteReader())
                         {
-                            _addTask[Convert.ToInt32(row[3].ToString())] = 0;
-
-                            SqlCommand commandQuantity = new SqlCommand($@"Select Process_worker.Quantity
-                                                From Process_worker Join Process
-                                                ON Process_worker.Process_id = Process.Process_id
-                                                Where Process_worker.Process_id = '{row[2]}'", connection);
-
-                            using (SqlDataReader rdrQuantity = commandQuantity.ExecuteReader())
+                            while (rdrQuantity.Read())
                             {
-                                while (rdrQuantity.Read())
-                                {
-                                    quantity += Convert.ToInt32(rdrQuantity.GetValue(0).ToString());
-                                }
+                                quantity += Convert.ToInt32(rdrQuantity.GetValue(0).ToString());
                             }
+                        }
 
-                            if (Convert.ToInt32(row[3]) - quantity <= 0)
-                            {
-                                continue;
-                            }
-                        }                     
+                        if (Convert.ToInt32(row[3]) - quantity <= 0)
+                        {
+                            continue;
+                        }
 
                         dgv_worker1.Rows.Add(row[0], row[2], row[1], Convert.ToInt32(row[3]) - quantity, 0);
                     }
@@ -138,7 +127,7 @@ namespace Diploma
             MessageBox.Show("Данные обновлены!", "Обновление данных");
             _addTask.Clear();
 
-            Worker1Form worker1Form = new Worker1Form(_userID, _userRole, _workerQuery);
+            WorkersForm worker1Form = new WorkersForm(_userID, _workerQuery);
             worker1Form.Show();
             status = false;
             this.Close();
@@ -159,8 +148,6 @@ namespace Diploma
                 SqlParameter quantityeParam = new SqlParameter("@quantity", SqlDbType.Int);
                 commandProc.Parameters.Add(procIDParam);
                 commandProc.Parameters.Add(quantityeParam);
-
-                
 
                 foreach (var item in create)
                 {

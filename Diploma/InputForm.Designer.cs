@@ -74,7 +74,7 @@ namespace Diploma
             this.Controls.Add(this.btn_LogIn);
             this.Name = "InputForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginForm";
+            this.Text = "Вход";
             this.ResumeLayout(false);
 
         }

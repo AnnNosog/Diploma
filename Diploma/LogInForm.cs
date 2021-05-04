@@ -1,14 +1,7 @@
 ﻿using Diploma.Strategy;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Diploma
@@ -45,15 +38,15 @@ namespace Diploma
                     Close();
                 }
 
-                if (userRoleId == 2 )
+                if (userRoleId == 2)
                 {
-                    Worker1Form worker1Form = new Worker1Form(userID, userRoleId, new FirstWorkerQuery());
+                    WorkersForm worker1Form = new WorkersForm(userID, new FirstWorkerQuery());
                     worker1Form.Show();
                     Close();
                 }
                 if (userRoleId == 3)
                 {
-                    Worker1Form worker1Form = new Worker1Form(userID, userRoleId, new SecondWorkerQuery());
+                    WorkersForm worker1Form = new WorkersForm(userID, new SecondWorkerQuery());
                     worker1Form.Show();
                     Close();
                 }

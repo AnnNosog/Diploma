@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Diploma
@@ -16,11 +13,7 @@ namespace Diploma
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new ChiefWorm());
-            //Application.Run(new ReportForm());
-            //Application.Run(new RegUserWorm());
             Application.Run(new InputForm());
-            //Application.Run(new Worker1Form(10));
         }
     }
 }

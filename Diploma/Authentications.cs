@@ -66,7 +66,7 @@ namespace Diploma
             {
                 return true;
             }
-            
+
             return false;
         }
 

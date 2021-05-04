@@ -151,7 +151,7 @@ namespace Diploma
             this.Controls.Add(this.menuStrip1);
             this.Name = "ChiefWorm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Главная";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChiefWorm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_prifiles)).EndInit();

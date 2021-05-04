@@ -1,7 +1,7 @@
 ﻿
 namespace Diploma
 {
-    partial class Worker1Form
+    partial class WorkersForm
     {
         /// <summary>
         /// Required designer variable.
