@@ -15,6 +15,8 @@
                                 Group by Process.Process_id, Tasks.Task_id, Profiles.Article
                                 Order by Process.Process_id"; }
 
+        public int RileID { get => 3; }
+
         public string GetQuatityQuery(int quantity)
         {
             return $"Select Process_worker.Quantity From Process_worker Join Process ON Process_worker.Process_id = Process.Process_id Join Users ON Process_worker.User_id = Users.User_id Join Roles ON Users.Role_id = Roles.Role_id Where Roles.Role_id = 3 AND Process_worker.Process_id = {quantity}";
@@ -22,7 +24,7 @@
 
         public string GetTextWindow()
         {
-            return "Вторая смена";
+            return "Упаковщики";
         }
     }
 }

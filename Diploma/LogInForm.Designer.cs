@@ -93,10 +93,12 @@ namespace Diploma
             this.Controls.Add(this.tb_password);
             this.Controls.Add(this.lb_login);
             this.Controls.Add(this.tb_userLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход";
             this.UseWaitCursor = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogInForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

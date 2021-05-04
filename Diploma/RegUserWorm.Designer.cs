@@ -88,7 +88,7 @@ namespace Diploma
             this.cmb_role.Location = new System.Drawing.Point(42, 191);
             this.cmb_role.Name = "cmb_role";
             this.cmb_role.Size = new System.Drawing.Size(147, 21);
-            this.cmb_role.TabIndex = 5;
+            this.cmb_role.TabIndex = 3;
             // 
             // lb_role
             // 
@@ -113,7 +113,7 @@ namespace Diploma
             this.tb_loginReg.Location = new System.Drawing.Point(42, 92);
             this.tb_loginReg.Name = "tb_loginReg";
             this.tb_loginReg.Size = new System.Drawing.Size(149, 20);
-            this.tb_loginReg.TabIndex = 7;
+            this.tb_loginReg.TabIndex = 1;
             // 
             // RegUserWorm
             // 
@@ -129,6 +129,7 @@ namespace Diploma
             this.Controls.Add(this.tb_passwordReg);
             this.Controls.Add(this.lb_UserNameReg);
             this.Controls.Add(this.tb_userNameReg);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RegUserWorm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Регистрация";

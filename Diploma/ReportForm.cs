@@ -59,7 +59,7 @@ namespace Diploma
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
             var column4 = new DataGridViewColumn();
-            column4.HeaderText = "Количество первая смена";
+            column4.HeaderText = "Нарезано";
             column4.ReadOnly = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
 
@@ -70,7 +70,7 @@ namespace Diploma
             column5.CellTemplate = new DataGridViewTextBoxCell();
 
             var column6 = new DataGridViewColumn();
-            column6.HeaderText = "Количество вторая смена";
+            column6.HeaderText = "Упаковано";
             column6.ReadOnly = true;
             column6.CellTemplate = new DataGridViewTextBoxCell();
 

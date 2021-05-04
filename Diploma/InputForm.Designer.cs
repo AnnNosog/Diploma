@@ -36,7 +36,7 @@ namespace Diploma
             // 
             // btn_LogIn
             // 
-            this.btn_LogIn.Location = new System.Drawing.Point(35, 35);
+            this.btn_LogIn.Location = new System.Drawing.Point(35, 26);
             this.btn_LogIn.Name = "btn_LogIn";
             this.btn_LogIn.Size = new System.Drawing.Size(175, 35);
             this.btn_LogIn.TabIndex = 0;
@@ -46,7 +46,7 @@ namespace Diploma
             // 
             // btn_regUser
             // 
-            this.btn_regUser.Location = new System.Drawing.Point(35, 93);
+            this.btn_regUser.Location = new System.Drawing.Point(35, 84);
             this.btn_regUser.Name = "btn_regUser";
             this.btn_regUser.Size = new System.Drawing.Size(175, 35);
             this.btn_regUser.TabIndex = 1;
@@ -56,7 +56,7 @@ namespace Diploma
             // 
             // btn_exit
             // 
-            this.btn_exit.Location = new System.Drawing.Point(104, 152);
+            this.btn_exit.Location = new System.Drawing.Point(104, 143);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(106, 25);
             this.btn_exit.TabIndex = 2;
@@ -68,10 +68,11 @@ namespace Diploma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 201);
+            this.ClientSize = new System.Drawing.Size(244, 193);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.btn_regUser);
             this.Controls.Add(this.btn_LogIn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InputForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход";

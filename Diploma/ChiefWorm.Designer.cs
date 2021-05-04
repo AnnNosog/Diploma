@@ -92,13 +92,14 @@ namespace Diploma
             this.dgv_prifiles.Name = "dgv_prifiles";
             this.dgv_prifiles.Size = new System.Drawing.Size(244, 319);
             this.dgv_prifiles.TabIndex = 15;
+            this.dgv_prifiles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_prifiles_CellClick);
             this.dgv_prifiles.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_prifiles_CellValidating);
-            this.dgv_prifiles.DoubleClick += new System.EventHandler(this.dgv_prifiles_DoubleClick);
             // 
             // col1
             // 
-            this.col1.HeaderText = "Профиль";
+            this.col1.HeaderText = "Изделие";
             this.col1.Name = "col1";
+            this.col1.ReadOnly = true;
             // 
             // Column2
             // 
@@ -111,7 +112,7 @@ namespace Diploma
             this.MenuMain});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(309, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(299, 24);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -142,13 +143,14 @@ namespace Diploma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 506);
+            this.ClientSize = new System.Drawing.Size(299, 477);
             this.Controls.Add(this.dgv_prifiles);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.lb_date_time);
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.lb_task);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ChiefWorm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главная";
@@ -169,12 +171,12 @@ namespace Diploma
         private System.Windows.Forms.Label lb_date_time;
         private System.Windows.Forms.Button btn_create;
         private System.Windows.Forms.DataGridView dgv_prifiles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MenuMain;
         private System.Windows.Forms.ToolStripMenuItem показатьЗаявкуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 

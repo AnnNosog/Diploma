@@ -19,7 +19,7 @@ namespace Diploma
         {
             LogInForm logInForm = new LogInForm();
             logInForm.Owner = this;
-            logInForm.ShowDialog();
+            logInForm.Show();
             this.Hide();
         }
 

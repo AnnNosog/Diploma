@@ -24,7 +24,6 @@ namespace Diploma
             _userID = userID;
             status = true;
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -80,33 +79,6 @@ namespace Diploma
                 }
 
                 _addTask.Add(dgv_prifiles[0, i].Value.ToString(), Convert.ToInt32(dgv_prifiles[1, i].Value));
-            }
-        }
-
-        private void dgv_prifiles_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgv_prifiles.CurrentCell.ColumnIndex == 1)
-                {
-                    return;
-                }
-
-                DataGridViewComboBoxCell dcombo = new DataGridViewComboBoxCell();
-
-                DataGridTextBox tbx = new DataGridTextBox();
-
-                for (int i = 0; i < _profilesString.Count; i++)
-                {
-                    dcombo.Items.Add(_profilesString[i]);
-                }
-
-                dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[0] = dcombo;
-                dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[1].Value = "0";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.Source);
             }
         }
 
@@ -187,6 +159,35 @@ namespace Diploma
             if (status)
             {
                 Application.Exit();
+            }
+        }
+
+        private void dgv_prifiles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgv_prifiles.CurrentCell.ColumnIndex == 1)
+                {
+                    return;
+                }
+
+                DataGridViewComboBoxCell dcombo = new DataGridViewComboBoxCell();
+                DataGridTextBox tbx = new DataGridTextBox();
+
+                for (int i = 0; i < _profilesString.Count; i++)
+                {
+                    dcombo.Items.Add(_profilesString[i]);
+                }
+
+                
+                dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[0] = dcombo;
+
+                dcombo.ReadOnly = false;
+                dgv_prifiles.Rows[dgv_prifiles.CurrentRow.Index].Cells[1].Value = "0";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source);
             }
         }
     }

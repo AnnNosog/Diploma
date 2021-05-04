@@ -27,8 +27,9 @@ namespace Diploma
 
         private void Worker1Form_Load(object sender, EventArgs e)
         {
-
+            this.Text = _workerQuery.GetTextWindow();
             status = true;
+
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Номер заявки";
             column1.Width = 70;
@@ -42,7 +43,7 @@ namespace Diploma
             column2.CellTemplate = new DataGridViewTextBoxCell();
 
             var column3 = new DataGridViewColumn();
-            column3.HeaderText = "Профиль";
+            column3.HeaderText = "Изделие";
             column3.ReadOnly = true;
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
@@ -113,11 +114,13 @@ namespace Diploma
                     continue;
                 }
 
-
-                if (Convert.ToInt32(dgv_worker1[4, i].Value) > Convert.ToInt32(dgv_worker1[3, i].Value))
+                if (_workerQuery.RileID == 3)
                 {
-                    dgv_worker1.Rows[i].ErrorText = "Количество не может быть больше основного количества.";
-                    return;
+                    if (Convert.ToInt32(dgv_worker1[4, i].Value) > Convert.ToInt32(dgv_worker1[3, i].Value))
+                    {
+                        dgv_worker1.Rows[i].ErrorText = "Количество не может быть больше основного количества.";
+                        return;
+                    }
                 }
 
                 _addTask[Convert.ToInt32(dgv_worker1[1, i].Value)] = Convert.ToInt32(dgv_worker1[4, i].Value);
