@@ -83,6 +83,12 @@
     <Compile Include="IWorkers\FirstWorkerQuery.cs" />
     <Compile Include="IWorkers\IWorkerQuery.cs" />
     <Compile Include="IWorkers\SecondWorkerQuery.cs" />
+    <Compile Include="ReportWorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportWorkerForm.Designer.cs">
+      <DependentUpon>ReportWorkerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWorkerForm.resx">
+      <DependentUpon>ReportWorkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkersForm.resx">
       <DependentUpon>WorkersForm.cs</DependentUpon>

@@ -41,7 +41,7 @@ namespace Diploma
             // dgw_report
             // 
             this.dgw_report.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgw_report.Location = new System.Drawing.Point(12, 103);
+            this.dgw_report.Location = new System.Drawing.Point(12, 101);
             this.dgw_report.Name = "dgw_report";
             this.dgw_report.Size = new System.Drawing.Size(675, 230);
             this.dgw_report.TabIndex = 0;
@@ -75,7 +75,7 @@ namespace Diploma
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(559, 359);
+            this.btn_ok.Location = new System.Drawing.Point(555, 359);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.Size = new System.Drawing.Size(127, 29);
             this.btn_ok.TabIndex = 4;
@@ -97,7 +97,7 @@ namespace Diploma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 410);
+            this.ClientSize = new System.Drawing.Size(694, 411);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.btn_reportShow);
@@ -107,7 +107,7 @@ namespace Diploma
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Отчёт";
+            this.Text = "Отчёт по заявкам";
             this.Load += new System.EventHandler(this.ReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_report)).EndInit();
             this.ResumeLayout(false);

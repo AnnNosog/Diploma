@@ -48,7 +48,7 @@ namespace Diploma
             }
             else if (Authentications.CheckPasswordRegex(tb_passwordReg.Text) && Authentications.CheckUserRegex(tb_userNameReg.Text))
             {
-                if (!Authentications.AuthCheckUser(tb_userNameReg.Text))
+                if (!Authentications.AuthCheckUser(tb_loginReg.Text))
                 {
                     string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 

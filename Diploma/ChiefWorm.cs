@@ -117,7 +117,7 @@ namespace Diploma
 
                 SqlCommand commandProcess = new SqlCommand("INSERT INTO Process (Task_id, Profile_id, Quantity) VALUES (@task_id, @profile_id, @quantity)", connection);
 
-                commandTasks.Parameters.Add(new SqlParameter("@date", DateTime.Now.ToString()));
+                commandTasks.Parameters.Add(new SqlParameter("@date", SqlDbType.Date)).Value = DateTime.Now.ToShortDateString();
                 commandTasks.Parameters.Add(new SqlParameter("@user_id", _userID));
 
                 commandTasks.ExecuteNonQuery();
@@ -189,6 +189,12 @@ namespace Diploma
             {
                 MessageBox.Show(ex.Message, ex.Source);
             }
+        }
+
+        private void просмотретьОтчётПоРабочемуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportWorkerForm reportWorkerForm = new ReportWorkerForm();
+            reportWorkerForm.Show();
         }
     }
 }

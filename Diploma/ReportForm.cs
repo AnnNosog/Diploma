@@ -17,8 +17,6 @@ namespace Diploma
 
         private void ReportForm_Load(object sender, EventArgs e)
         {
-            int[,] array = new int[,] { { 1, 2, 3, 8, 6, 8, 7, 8, 7, 0, 8 }, { 1, 2, 3, 8, 6, 8, 7, 8, 7, 0, 8 }, { 1, 2, 3, 8, 6, 8, 7, 8, 7, 0, 8 } };
-
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -144,9 +144,10 @@ namespace Diploma
             {
                 connection.Open();
 
-                SqlCommand commandProc = new SqlCommand("INSERT INTO Process_worker (Process_id, User_id, Quantity) VALUES (@proc_id, @user_id, @quantity)", connection);
+                SqlCommand commandProc = new SqlCommand("INSERT INTO Process_worker (Process_id, User_id, Quantity, Date) VALUES (@proc_id, @user_id, @quantity, @date)", connection);
 
                 commandProc.Parameters.Add(new SqlParameter("@user_id", _userID));
+                commandProc.Parameters.Add(new SqlParameter("@date", SqlDbType.Date)).Value = DateTime.Now.ToShortDateString();
                 SqlParameter procIDParam = new SqlParameter("@proc_id", SqlDbType.Int);
                 SqlParameter quantityeParam = new SqlParameter("@quantity", SqlDbType.Int);
                 commandProc.Parameters.Add(procIDParam);
