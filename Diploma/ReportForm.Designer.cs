@@ -105,6 +105,7 @@ namespace Diploma
             this.Controls.Add(this.lb_report);
             this.Controls.Add(this.dgw_report);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Отчёт по заявкам";

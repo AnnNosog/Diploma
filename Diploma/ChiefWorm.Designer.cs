@@ -39,8 +39,8 @@ namespace Diploma
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuMain = new System.Windows.Forms.ToolStripMenuItem();
             this.показатьЗаявкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотретьОтчётПоРабочемуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_prifiles)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -134,19 +134,19 @@ namespace Diploma
             this.показатьЗаявкуToolStripMenuItem.Text = "Просмотреть заявки";
             this.показатьЗаявкуToolStripMenuItem.Click += new System.EventHandler(this.показатьЗаявкуToolStripMenuItem_Click);
             // 
-            // выходToolStripMenuItem
-            // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
-            // 
             // просмотретьОтчётПоРабочемуToolStripMenuItem
             // 
             this.просмотретьОтчётПоРабочемуToolStripMenuItem.Name = "просмотретьОтчётПоРабочемуToolStripMenuItem";
             this.просмотретьОтчётПоРабочемуToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.просмотретьОтчётПоРабочемуToolStripMenuItem.Text = "Просмотреть отчёт по рабочему";
             this.просмотретьОтчётПоРабочемуToolStripMenuItem.Click += new System.EventHandler(this.просмотретьОтчётПоРабочемуToolStripMenuItem_Click);
+            // 
+            // выходToolStripMenuItem
+            // 
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // ChiefWorm
             // 
@@ -160,6 +160,7 @@ namespace Diploma
             this.Controls.Add(this.lb_task);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ChiefWorm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главная";

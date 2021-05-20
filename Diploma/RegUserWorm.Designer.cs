@@ -130,6 +130,7 @@ namespace Diploma
             this.Controls.Add(this.lb_UserNameReg);
             this.Controls.Add(this.tb_userNameReg);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "RegUserWorm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Регистрация";

@@ -94,6 +94,7 @@ namespace Diploma
             this.Controls.Add(this.lb_login);
             this.Controls.Add(this.tb_userLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход";

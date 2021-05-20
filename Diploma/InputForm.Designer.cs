@@ -73,6 +73,7 @@ namespace Diploma
             this.Controls.Add(this.btn_regUser);
             this.Controls.Add(this.btn_LogIn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "InputForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход";

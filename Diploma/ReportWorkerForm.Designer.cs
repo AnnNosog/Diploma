@@ -52,7 +52,7 @@ namespace Diploma
             // 
             // btn_reportShow
             // 
-            this.btn_reportShow.Location = new System.Drawing.Point(357, 25);
+            this.btn_reportShow.Location = new System.Drawing.Point(296, 35);
             this.btn_reportShow.Name = "btn_reportShow";
             this.btn_reportShow.Size = new System.Drawing.Size(119, 30);
             this.btn_reportShow.TabIndex = 9;
@@ -63,7 +63,7 @@ namespace Diploma
             // cmb_report
             // 
             this.cmb_report.FormattingEnabled = true;
-            this.cmb_report.Location = new System.Drawing.Point(15, 31);
+            this.cmb_report.Location = new System.Drawing.Point(12, 41);
             this.cmb_report.Name = "cmb_report";
             this.cmb_report.Size = new System.Drawing.Size(103, 21);
             this.cmb_report.TabIndex = 8;
@@ -71,7 +71,7 @@ namespace Diploma
             // lb_report
             // 
             this.lb_report.AutoSize = true;
-            this.lb_report.Location = new System.Drawing.Point(12, 9);
+            this.lb_report.Location = new System.Drawing.Point(9, 19);
             this.lb_report.Name = "lb_report";
             this.lb_report.Size = new System.Drawing.Size(106, 13);
             this.lb_report.TabIndex = 7;
@@ -88,7 +88,7 @@ namespace Diploma
             // cmb_date
             // 
             this.cmb_date.FormattingEnabled = true;
-            this.cmb_date.Location = new System.Drawing.Point(188, 31);
+            this.cmb_date.Location = new System.Drawing.Point(158, 41);
             this.cmb_date.Name = "cmb_date";
             this.cmb_date.Size = new System.Drawing.Size(103, 21);
             this.cmb_date.TabIndex = 13;
@@ -96,7 +96,7 @@ namespace Diploma
             // lb_date
             // 
             this.lb_date.AutoSize = true;
-            this.lb_date.Location = new System.Drawing.Point(185, 9);
+            this.lb_date.Location = new System.Drawing.Point(155, 19);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(82, 13);
             this.lb_date.TabIndex = 12;
@@ -104,18 +104,19 @@ namespace Diploma
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(360, 349);
+            this.button1.Location = new System.Drawing.Point(415, 349);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 29);
             this.button1.TabIndex = 10;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ReportWorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 401);
+            this.ClientSize = new System.Drawing.Size(556, 401);
             this.Controls.Add(this.cmb_date);
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.btn_save);
@@ -124,7 +125,10 @@ namespace Diploma
             this.Controls.Add(this.cmb_report);
             this.Controls.Add(this.lb_report);
             this.Controls.Add(this.dgw_report);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ReportWorkerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Отчёт по рабочим";
             this.Load += new System.EventHandler(this.ReportWorkerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_report)).EndInit();

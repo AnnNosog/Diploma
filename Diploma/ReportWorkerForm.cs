@@ -5,10 +5,13 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Diploma
 {
@@ -229,26 +232,44 @@ namespace Diploma
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application excelapp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workbook = excelapp.Workbooks.Add();
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = workbook.ActiveSheet;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-            for (int i = 1; i < dgw_report.RowCount + 1; i++)
+            saveFileDialog1.Filter = "(*.xlsx)|*.xlsx";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            Excel.Application excelapp = new Excel.Application();
+            Excel.Workbook workbook = excelapp.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                for (int j = 1; j < dgw_report.ColumnCount + 1; j++)
+                if (saveFileDialog1.FileName != "")
                 {
-                    worksheet.Rows[1].Columns[j] = dgw_report.Columns[j - 1].HeaderText;
+                    for (int i = 1; i < dgw_report.RowCount + 1; i++)
+                    {
+                        for (int j = 1; j < dgw_report.ColumnCount + 1; j++)
+                        {
+                            worksheet.Rows[1].Columns[j] = dgw_report.Columns[j - 1].HeaderText;
 
-                    worksheet.Rows[i + 1].Columns[j] = dgw_report.Rows[i - 1].Cells[j - 1].Value;
+                            worksheet.Rows[i + 1].Columns[j] = dgw_report.Rows[i - 1].Cells[j - 1].Value;
+                        }
+                    }
                 }
+
+                workbook.SaveAs(saveFileDialog1.FileName, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                excelapp.Quit();
+
+                MessageBox.Show("Отчёт сохранён.", "Успех");
             }
+        }
 
-            excelapp.AlertBeforeOverwriting = false;
-            string date = DateTime.Now.ToShortDateString();
-            workbook.SaveAs($"C:\\Users\\Anna\\Desktop\\Report_{date}_{Convert.ToInt32(cmb_report.SelectedItem)}.xlsx");
-            excelapp.Quit();
-
-            MessageBox.Show("Отчёт сохранён.", "Успех");
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
