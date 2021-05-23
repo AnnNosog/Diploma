@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Excel = Microsoft.Office.Interop.Excel;
@@ -85,8 +78,8 @@ namespace Diploma
             column2.CellTemplate = new DataGridViewTextBoxCell();
 
             var column3 = new DataGridViewColumn();
-            column3.HeaderText = "Количество";
-            column3.Width = 100;
+            column3.HeaderText = "Общее количество";
+            column3.Width = 70;
             column3.ReadOnly = true;
             column3.CellTemplate = new DataGridViewTextBoxCell();
 
@@ -96,11 +89,18 @@ namespace Diploma
             column4.ReadOnly = true;
             column4.CellTemplate = new DataGridViewTextBoxCell();
 
+            var column5 = new DataGridViewColumn();
+            column5.HeaderText = "Сделано";
+            column5.Width = 70;
+            column5.ReadOnly = true;
+            column5.CellTemplate = new DataGridViewTextBoxCell();
+
             dgw_report.Columns.Add(column1);
             dgw_report.Columns.Add(columnDate);
             dgw_report.Columns.Add(column2);
             dgw_report.Columns.Add(column3);
             dgw_report.Columns.Add(column4);
+            dgw_report.Columns.Add(column5);
 
             dgw_report.AllowUserToAddRows = false;
         }
@@ -115,14 +115,11 @@ namespace Diploma
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string commandFirst = "sdf";
+                string commandFirst = "\0";
 
-                if (cmb_report.SelectedItem == null && cmb_date.SelectedItem == null || cmb_date.SelectedItem.ToString() == "" && cmb_report.SelectedItem.ToString() == "")
+                if (cmb_report.SelectedItem == null && cmb_date.SelectedItem == null || cmb_report.SelectedItem.ToString() == "" && cmb_date.SelectedItem.ToString() == "") /// CLTJPLG
                 {
-                    //MessageBox.Show("Выберите рабочего и\\или дату");
-                    //return;
-
-                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Users.Name, Process_worker.Date
+                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Users.Name, Process_worker.Date, Process.Quantity
                                         From Process Join Profiles
                                         On Process.Profile_id = Profiles.Profile_id
                                         Join Process_worker
@@ -134,7 +131,7 @@ namespace Diploma
                                         Join Tasks
                                         On Tasks.Task_id = Process.Task_id
 										Where Roles.Name <> 'Chief'
-                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date
+                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date,              Process.Quantity
 										Order by Process_worker.Date";
 
                     SqlDataAdapter adapter2 = new SqlDataAdapter(commandFirst, connection);
@@ -145,7 +142,7 @@ namespace Diploma
                     {
                         foreach (DataRow column in table.Rows)
                         {
-                            dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[2], column[3]);
+                            dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[5], column[3], column[2]);
                         }
                     }
 
@@ -155,7 +152,7 @@ namespace Diploma
                 else if (cmb_date.SelectedItem == null || cmb_date.SelectedItem.ToString() == "")
                 {
                     nameWorker = cmb_report.SelectedItem.ToString();
-                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Process_worker.Date
+                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Process_worker.Date, Process.Quantity
                                         From Process Join Profiles
                                         On Process.Profile_id = Profiles.Profile_id
                                         Join Process_worker
@@ -165,12 +162,12 @@ namespace Diploma
                                         Join Tasks
                                         On Tasks.Task_id = Process.Task_id
                                         Where Users.Name = '{nameWorker}'
-                                        Group by Profiles.Article, Tasks.Task_id, Process_worker.Date
+                                        Group by Profiles.Article, Tasks.Task_id, Process_worker.Date, Process.Quantity
 										Order by Process_worker.Date";
                 }
                 else if (cmb_report.SelectedItem == null || cmb_report.SelectedItem.ToString() == "")
                 {
-                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Users.Name, Process_worker.Date
+                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Users.Name, Process_worker.Date, Process.Quantity
                                         From Process Join Profiles
                                         On Process.Profile_id = Profiles.Profile_id
                                         Join Process_worker
@@ -180,7 +177,7 @@ namespace Diploma
                                         Join Tasks
                                         On Tasks.Task_id = Process.Task_id
                                         Where Process_worker.Date = '{Convert.ToDateTime(cmb_date.SelectedItem).ToShortDateString()}'
-                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date
+                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date, Process.Quantity
 										Order by Process_worker.Date";
 
 
@@ -192,7 +189,7 @@ namespace Diploma
                     {
                         foreach (DataRow column in table.Rows)
                         {
-                            dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[2], column[3]);
+                            dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[5], column[3], column[2]);
                         }
                     }
 
@@ -202,7 +199,7 @@ namespace Diploma
                 {
                     nameWorker = cmb_report.SelectedItem.ToString();
 
-                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Process_worker.Date
+                    commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Process_worker.Date, Process.Quantity
                                         From Process Join Profiles
                                         On Process.Profile_id = Profiles.Profile_id
                                         Join Process_worker
@@ -212,7 +209,7 @@ namespace Diploma
                                         Join Tasks
                                         On Tasks.Task_id = Process.Task_id
                                         Where Users.Name = '{nameWorker}' AND Process_worker.Date = '{Convert.ToDateTime(cmb_date.SelectedItem).ToShortDateString()}'
-                                        Group by Profiles.Article, Tasks.Task_id, Process_worker.Date
+                                        Group by Profiles.Article, Tasks.Task_id, Process_worker.Date,                          Process.Quantity
 										Order by Process_worker.Date";
                 }
 
@@ -224,7 +221,7 @@ namespace Diploma
                 {
                     foreach (DataRow column in table.Rows)
                     {
-                        dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[3]).ToShortDateString(), column[1], column[2], nameWorker);
+                        dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[3]).ToShortDateString(), column[1], column[4], nameWorker, column[2]);
                     }
                 }
             }

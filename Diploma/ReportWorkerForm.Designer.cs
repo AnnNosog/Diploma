@@ -82,7 +82,7 @@ namespace Diploma
             this.dgw_report.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgw_report.Location = new System.Drawing.Point(12, 93);
             this.dgw_report.Name = "dgw_report";
-            this.dgw_report.Size = new System.Drawing.Size(530, 230);
+            this.dgw_report.Size = new System.Drawing.Size(570, 230);
             this.dgw_report.TabIndex = 6;
             // 
             // cmb_date
@@ -104,7 +104,7 @@ namespace Diploma
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(415, 349);
+            this.button1.Location = new System.Drawing.Point(455, 349);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 29);
             this.button1.TabIndex = 10;
@@ -116,7 +116,7 @@ namespace Diploma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 401);
+            this.ClientSize = new System.Drawing.Size(602, 401);
             this.Controls.Add(this.cmb_date);
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.btn_save);
