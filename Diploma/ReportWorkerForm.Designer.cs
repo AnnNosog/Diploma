@@ -29,6 +29,9 @@ namespace Diploma
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_reportShow = new System.Windows.Forms.Button();
             this.cmb_report = new System.Windows.Forms.ComboBox();
@@ -37,7 +40,10 @@ namespace Diploma
             this.cmb_date = new System.Windows.Forms.ComboBox();
             this.lb_date = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.crt_reportWorker = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgw_report)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crt_reportWorker)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_save
@@ -112,11 +118,28 @@ namespace Diploma
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // crt_reportWorker
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.crt_reportWorker.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.crt_reportWorker.Legends.Add(legend1);
+            this.crt_reportWorker.Location = new System.Drawing.Point(600, 35);
+            this.crt_reportWorker.Name = "crt_reportWorker";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.crt_reportWorker.Series.Add(series1);
+            this.crt_reportWorker.Size = new System.Drawing.Size(608, 498);
+            this.crt_reportWorker.TabIndex = 14;
+            this.crt_reportWorker.Text = "chart1";
+            // 
             // ReportWorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 401);
+            this.ClientSize = new System.Drawing.Size(1268, 565);
+            this.Controls.Add(this.crt_reportWorker);
             this.Controls.Add(this.cmb_date);
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.btn_save);
@@ -132,6 +155,7 @@ namespace Diploma
             this.Text = "Отчёт по рабочим";
             this.Load += new System.EventHandler(this.ReportWorkerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgw_report)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crt_reportWorker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,5 +171,7 @@ namespace Diploma
         private System.Windows.Forms.ComboBox cmb_date;
         private System.Windows.Forms.Label lb_date;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart crt_reportWorker;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

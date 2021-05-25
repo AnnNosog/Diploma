@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Diploma
@@ -57,6 +56,7 @@ namespace Diploma
                     }
                 }
 
+                crt_reportWorker.AlignDataPointsByAxisLabel();
             }
 
             var column1 = new DataGridViewColumn();
@@ -117,7 +117,9 @@ namespace Diploma
                 connection.Open();
                 string commandFirst = "\0";
 
-                if (cmb_report.SelectedItem == null && cmb_date.SelectedItem == null || cmb_report.SelectedItem.ToString() == "" && cmb_date.SelectedItem.ToString() == "") /// CLTJPLG
+                int maxY = 0;
+
+                if (cmb_report.SelectedItem == null && cmb_date.SelectedItem == null || cmb_report.SelectedItem.ToString() == "" && cmb_date.SelectedItem.ToString() == "")
                 {
                     commandFirst = $@"Select Tasks.Task_id, Profiles.Article, SUM(Process_worker.Quantity), Users.Name, Process_worker.Date, Process.Quantity
                                         From Process Join Profiles
@@ -131,23 +133,38 @@ namespace Diploma
                                         Join Tasks
                                         On Tasks.Task_id = Process.Task_id
 										Where Roles.Name <> 'Chief'
-                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date,              Process.Quantity
+                                        Group by Users.Name, Profiles.Article, Tasks.Task_id, Process_worker.Date, Process.Quantity
 										Order by Process_worker.Date";
 
                     SqlDataAdapter adapter2 = new SqlDataAdapter(commandFirst, connection);
                     DataSet worker2 = new DataSet();
                     adapter2.Fill(worker2);
 
+                    crt_reportWorker.Series.Clear();
+
                     foreach (DataTable table in worker2.Tables)
                     {
                         foreach (DataRow column in table.Rows)
                         {
+                            if (Convert.ToInt32(column[5]) > maxY)
+                            {
+                                maxY = Convert.ToInt32(column[5]);
+                            }
+
                             dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[5], column[3], column[2]);
+
+                            if (crt_reportWorker.Series.IsUniqueName(column[3].ToString()))
+                            {
+                                crt_reportWorker.Series.Add(column[3].ToString());
+                            }
+
+                            crt_reportWorker.Series[column[3].ToString()].Points.AddXY(column[4], column[2]);
                         }
                     }
 
-                    return;
+                    crt_reportWorker.ChartAreas[0].AxisY.Maximum = maxY;
 
+                    return;
                 }
                 else if (cmb_date.SelectedItem == null || cmb_date.SelectedItem.ToString() == "")
                 {
@@ -185,13 +202,29 @@ namespace Diploma
                     DataSet worker1 = new DataSet();
                     adapter1.Fill(worker1);
 
+                    crt_reportWorker.Series.Clear();
+
                     foreach (DataTable table in worker1.Tables)
                     {
                         foreach (DataRow column in table.Rows)
                         {
                             dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[4]).ToShortDateString(), column[1], column[5], column[3], column[2]);
+
+                            if (Convert.ToInt32(column[5]) > maxY)
+                            {
+                                maxY = Convert.ToInt32(column[5]);
+                            }
+
+                            if (crt_reportWorker.Series.IsUniqueName(column[3].ToString()))
+                            {
+                                crt_reportWorker.Series.Add(column[3].ToString());
+                            }
+
+                            crt_reportWorker.Series[column[3].ToString()].Points.AddXY(column[1] + $" ({Convert.ToDateTime(column[4]).ToShortDateString()})", column[2]);
                         }
                     }
+
+                    crt_reportWorker.ChartAreas[0].AxisY.Maximum = maxY;
 
                     return;
                 }
@@ -217,13 +250,25 @@ namespace Diploma
                 DataSet worker = new DataSet();
                 adapter.Fill(worker);
 
+                crt_reportWorker.Series.Clear();
+                crt_reportWorker.Series.Add(nameWorker);
+
                 foreach (DataTable table in worker.Tables)
                 {
                     foreach (DataRow column in table.Rows)
                     {
+                        if (Convert.ToInt32(column[4]) > maxY)
+                        {
+                            maxY = Convert.ToInt32(column[4]);
+                        }
+
                         dgw_report.Rows.Add(column[0], Convert.ToDateTime(column[3]).ToShortDateString(), column[1], column[4], nameWorker, column[2]);
+
+                        crt_reportWorker.Series[nameWorker].Points.AddXY(column[1] + $" ({Convert.ToDateTime(column[3]).ToShortDateString()})", column[2]);
                     }
                 }
+
+                crt_reportWorker.ChartAreas[0].AxisY.Maximum = maxY;
             }
         }
 
@@ -268,5 +313,6 @@ namespace Diploma
         {
             this.Close();
         }
+
     }
 }
